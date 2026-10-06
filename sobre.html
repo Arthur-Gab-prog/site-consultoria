@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="WhatsApp Image 2026-04-30 at 21.22.45.jpeg">
+    <title>Sobre Nós | Mateus & Carrari</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&family=Tenor+Sans&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <style>
+        /* --- 1. CONFIGURAÇÕES BASE E TEMAS --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; text-decoration: none; list-style: none; outline: none; }
+        
+        :root {
+            --gold: #c5a059;
+            --dark-gold: #b08e4d;
+            --black: #0a0a0a;
+            --gray: #666;
+            --body-bg: #ffffff;
+            --header-bg: #ffffff;
+            --card-bg: #ffffff;
+            --text-main: #0a0a0a;
+            --border: #f0f0f0;
+            --shadow: rgba(0,0,0,0.05);
+            --section-alt: #fcfcfc;
+        }
+
+        body.dark-mode {
+            --body-bg: #0e0e0e;
+            --text-main: #f1f1f1;
+            --header-bg: #0a0a0a;
+            --card-bg: #1a1a1a;
+            --gray: #aaa;
+            --border: #333;
+            --shadow: rgba(0,0,0,0.4);
+            --section-alt: #151515;
+        }
+
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            color: var(--text-main); 
+            line-height: 1.6; 
+            background: var(--body-bg); 
+            padding-top: 90px;
+            transition: background 0.4s ease, color 0.4s ease;
+        }
+
+        /* --- 2. HEADER E MENU MOBILE --- */
+        .header {
+            width: 100%; height: 90px; display: flex; align-items: center; justify-content: space-around;
+            padding: 0 5%; background: var(--header-bg); position: fixed; top: 0; z-index: 1000;
+            box-shadow: 0 2px 10px var(--shadow);
+            backdrop-filter: blur(5px);
+            transition: background 0.4s ease;
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 15px; }
+        .logo-img { height: 55px; width: auto; border-radius: 4px; }
+        .logo-text { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--text-main); }
+        .logo-text span { color: var(--gold); }
+
+        .nav-menu ul { display: flex; gap: 35px; }
+        .nav-menu a { color: var(--gray); font-size: 16px; position: relative; padding: 10px 0; transition: 0.3s; }
+        .nav-menu a:hover, .nav-menu a.active { color: var(--gold); }
+        
+        .mobile-menu-icon {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1100;
+        }
+
+        .mobile-menu-icon span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background-color: var(--gold);
+            transition: 0.3s;
+        }
+
+        .mobile-menu-icon.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .mobile-menu-icon.active span:nth-child(2) { opacity: 0; }
+        .mobile-menu-icon.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+        .btn-gold { background: var(--gold); color: #fff; padding: 12px 28px; border-radius: 8px; border: none; font-weight: 600; cursor: pointer; transition: 0.3s; }
+        .btn-gold:hover { background: var(--dark-gold); transform: translateY(-2px); }
+
+        /* --- 3. SEÇÃO SOBRE --- */
+        .about-page-section { padding: 80px 10%; text-align: center; }
+        .about-main-title { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 10px; color: var(--text-main); }
+        .title-underline { width: 60px; height: 3px; background-color: var(--gold); margin: 0 auto 25px; }
+        .about-main-subtitle { font-size: 1.1rem; color: var(--gray); font-weight: 300; max-width: 800px; margin: 0 auto 60px; }
+
+        .history-card {
+            background: var(--card-bg); padding: 60px; border-radius: 15px; text-align: left;
+            box-shadow: 0 10px 40px var(--shadow); border: 1px solid var(--border);
+            max-width: 1000px; margin: 0 auto;
+        }
+        .history-card h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 25px; color: var(--text-main); }
+        .history-card p { margin-bottom: 20px; color: var(--gray); font-weight: 300; }
+
+        /* --- 4. PILARES E MÉTRICAS --- */
+        .pillars-section { padding: 80px 10%; background-color: var(--section-alt); }
+        .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto 80px; }
+        .pillar-card { background: var(--card-bg); padding: 40px; border-radius: 12px; text-align: center; border: 1px solid var(--border); transition: 0.3s; }
+        .pillar-card:hover { transform: translateY(-10px); border-color: var(--gold); }
+        
+        .pillar-icon { font-size: 2.5rem; margin-bottom: 20px; display: block; color: var(--gold); }
+        
+        .metrics-bar { background: var(--card-bg); border-radius: 15px; padding: 40px; display: flex; justify-content: space-around; flex-wrap: wrap; border: 1px solid var(--border); box-shadow: 0 5px 20px var(--shadow); }
+        .metric-item { text-align: center; flex: 1 1 200px; }
+        .metric-number { font-family: 'Tenor Sans', serif; font-size: 2.2rem; color: var(--gold); display: block; }
+        .metric-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--gray); }
+
+        /* --- 5. FOOTER --- */
+        .main-footer { background: var(--black); color: #fff; padding: 80px 10% 20px; }
+        .footer-container { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; max-width: 1200px; margin: 0 auto 50px; }
+        .footer-bottom { border-top: 1px solid #333; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; color: #666; font-size: 0.8rem; }
+        .footer-bottom a { color: var(--gold); font-weight: bold; }
+
+        @media (max-width: 992px) {
+            .header { justify-content: space-between; padding: 0 20px; }
+            .mobile-menu-icon { display: flex; }
+            .nav-menu {
+                position: fixed; top: 0; right: -100%; width: 80%; height: 100vh;
+                background: var(--header-bg); display: block; padding: 120px 40px;
+                transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.1); z-index: 1050;
+            }
+            .nav-menu.active { right: 0; }
+            .nav-menu ul { flex-direction: column; text-align: left; gap: 30px; }
+            .nav-menu a { font-size: 18px; }
+            .actions .btn-gold { display: none; }
+            .footer-container { grid-template-columns: 1fr; text-align: center; }
+            .history-card { padding: 30px; }
+            .about-main-title { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="logo-container">
+        <img src="WhatsApp Image 2026-04-30 at 21.22.45.jpeg" alt="Logo" class="logo-img">
+        <div class="logo-text">Mateus<span>&</span>Carrari</div>
+    </div>
+
+    <nav class="nav-menu" id="nav-list">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="sobre.html" class="active">Sobre</a></li>
+            <li><a href="servicos.html">Serviços</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+    </nav>
+
+    <div class="actions" style="display: flex; align-items: center; gap: 20px;">
+        <button id="theme-toggle" style="background: none; border: none; font-size: 22px; cursor: pointer;">🌙</button>
+        <button class="btn-gold" onclick="window.location.href='contato.html'">Fale Conosco</button>
+        
+        <button class="mobile-menu-icon" id="mobile-menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</header>
+
+<section class="about-page-section">
+    <div class="about-header-main">
+        <h2 class="about-main-title">Sobre Nós</h2>
+        <div class="title-underline"></div>
+        <p class="about-main-subtitle">
+            Somos uma consultoria empresarial de alto valor, comprometida com o crescimento sustentável e os resultados dos nossos clientes.
+        </p>
+    </div>
+
+    <div class="history-card">
+        <h3>Nossa História</h3>
+        <p>Somos uma consultoria em estratégia empresarial, melhoria de processos e desenvolvimento organizacional. Nosso objetivo é ajudar empresas a estruturar sua gestão, aumentar eficiência e alcançar resultados sustentáveis.</p>
+    </div>
+</section>
+
+<section class="pillars-section">
+    <div class="pillars-grid">
+        <div class="pillar-card">
+            <span class="pillar-icon"><i class="bi bi-rocket-takeoff"></i></span>
+            <h4>Nossa Missão</h4>
+            <p>Apoiar empresas no desenvolvimento de estratégias eficazes, processos eficientes e gestão profissional.</p>
+        </div>
+        <div class="pillar-card">
+            <span class="pillar-icon"><i class="bi bi-eye"></i></span>
+            <h4>Nossa Visão</h4>
+            <p>Ser referência em consultoria empresarial focada em melhoria contínua e excelência organizacional.</p>
+        </div>
+    </div>
+
+    <div class="metrics-bar">
+        <div class="metric-item">
+            <span class="metric-number">10<sup>+</sup></span>
+            <span class="metric-label">Anos de Experiência</span>
+        </div>
+    </div>
+</section>
+
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-column">
+            <div class="logo-text" style="color: white; font-size: 24px;">Mateus<span>&</span>Carrari</div>
+            <p style="color: #888; margin-top: 15px;">Consultoria empresarial premium com foco em estratégia e resultados reais.</p>
+        </div>
+        <div class="footer-column">
+            
+            <h4>NAVEGAÇÃO</h4>
+            <a href="index.html" style="color: #aaa; display: block; margin-bottom: 10px;">Home</a>
+            <a href="sobre.html" style="color: #aaa; display: block; margin-bottom: 10px;">Sobre</a>
+            <a href="servicos.html" style="color: #aaa; 
+            display: block; margin-bottom: 10px;">Serviços</a>
+            <a href="contato.html" style="color: #aaa; display: block; margin-bottom: 10px;">Contato</a>
+        </div>
+        <div class="footer-column">
+            <h4>TECNOLOGIA</h4>
+            <p style="color: #fff; font-weight: 600;">Arthur Code</p>
+            <a href="https://wa.me/5564992209255" target="_blank" style="color: var(--gold); font-size: 0.8rem;">Me chame no WhatsApp 🚀</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <span>&copy; 2026 Mateus&Carrari. Todos os direitos reservados.</span>
+        <span>Crafted by <a href="https://wa.me/5564992209255" target="_blank">Arthur Code</a></span>
+    </div>
+</footer>
+
+<script>
+    // Tema Escuro
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    const updateIcon = (isDark) => { themeToggle.innerText = isDark ? '☀️' : '🌙'; };
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') { body.classList.add('dark-mode'); updateIcon(true); }
+    themeToggle.addEventListener('click', () => {
+        const isDark = body.classList.toggle('dark-mode');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        updateIcon(isDark);
+    });
+
+    // Menu Mobile Corrigido
+    const menuIcon = document.getElementById('mobile-menu-icon');
+    const navMenu = document.getElementById('nav-list');
+    
+    menuIcon.addEventListener('click', () => {
+        menuIcon.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // Fecha o menu ao clicar em um link
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            menuIcon.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+</script>
+
+</body>
+</html>
